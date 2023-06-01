@@ -22,11 +22,10 @@ return new class extends Migration
             $table->enum('status', ['single', 'married', 'separated']);
             $table->string('birthday');
             $table->enum('gender', ['male', 'female']);
-            $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
             $table->string('userable_type')->nullable();
             $table->unsignedBigInteger('userable_id')->nullable();
+            $table->string('image')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

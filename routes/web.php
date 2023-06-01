@@ -20,6 +20,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::middleware(['redirect.prefix'])->get('/login', function () {
+    return view('auth.login');
+});
+
+
 Route::get('/', function () {
     return view('frontend.index');
 });

@@ -74,7 +74,7 @@ return [
     |
     */
 
-    'prefix' => '',
+    'prefix' => 'cms/{guard}/',
 
     'domain' => null,
 
@@ -142,6 +142,7 @@ return [
             'confirmPassword' => true,
             // 'window' => 0,
         ]),
+
     ],
 
 ];
