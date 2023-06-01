@@ -163,33 +163,15 @@
                             </a>
                             <ul class="nav-group-sub collapse">
                                 <li class="nav-item">
-                                    <a href="{{ route('categoaries.index') }}" class="nav-link"> عرض التصنيفات </a>
+                                    <a href="{{ route('categories.index') }}" class="nav-link"> عرض التصنيفات </a>
                                 </li>
-                            </ul>
-                            <ul class="nav-group-sub collapse">
                                 <li class="nav-item">
-                                    <a href="{{ route('categoaries.create') }}" class="nav-link"> اضافة التصنيفات </a>
+                                    <a href="{{ route('categories.create') }}" class="nav-link"> اضافة التصنيفات </a>
                                 </li>
                             </ul>
                         </li>
                         </li>
-                        <li class="nav-item">
-                        <li class="nav-item nav-item-submenu">
-                            <a href="#" class="nav-link">
-                                <i class="ph-circles-four"></i>
-                                <span>استيراد اكسل </span>
-                            </a>
-                            <ul class="nav-group-sub collapse">
-                                <li class="nav-item">
-                                    <a href="{{ route('indexImported') }}" class="nav-link"> عرض البيانات </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('createImport') }}" class="nav-link"> استيراد اكسل
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        </li>
+
                     </ul>
                     </li>
                     </ul>
