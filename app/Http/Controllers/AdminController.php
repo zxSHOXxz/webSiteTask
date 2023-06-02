@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Traits\UserTypeTrait;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+    use UserTypeTrait;
+
     /**
      * Display a listing of the resource.
      *

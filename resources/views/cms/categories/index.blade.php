@@ -77,7 +77,7 @@
 @section('scripts')
     <script>
         function performDestroy(id, referance) {
-            let url = '/cms/admin/divs/' + id;
+            let url = '/cms/admin/categories/' + id;
             confirmDestroy(url, referance);
         }
         /* ------------------------------------------------------------------------------

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Offers;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,8 @@ class OffersController extends Controller
      */
     public function create()
     {
-        return view('cms.offers.create');
+        $courses = Course::all();
+        return view('cms.offers.create', compact('courses'));
     }
 
     /**

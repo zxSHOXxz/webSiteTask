@@ -1,122 +1,118 @@
 function store(url, data) {
-    axios.post(url, data)
+    axios
+        .post(url, data)
         .then(function (response) {
             showMessage(response.data);
             clearForm();
             clearAndHideErrors();
-
         })
         .catch(function (error) {
-
             if (error.response.data.errors !== undefined) {
                 showErrorMessages(error.response.data.errors);
             } else {
-
                 showMessage(error.response.data);
             }
         });
-
 }
 function storepart(url, data) {
-
-    axios.post(url, data)
+    axios
+        .post(url, data)
 
         .then(function (response) {
             showMessage(response.data);
             clearForm();
             clearAndHideErrors();
-
         })
 
         .catch(function (error) {
-
             if (error.response.data.errors !== undefined) {
                 showErrorMessages(error.response.data.errors);
             } else {
-
                 showMessage(error.response.data);
             }
         });
-
 }
 function storeRoute(url, data) {
-    axios.post(url, data, {
-    headers: {
-      'Content-Type': 'multipart/form-data'
-    }
-})
+    axios
+        .post(url, data, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        })
         .then(function (response) {
-                window.location = response.data.redirect;
-             // showMessage(response.data);
+            window.location = response.data.redirect;
+            // showMessage(response.data);
             // clearForm();
             // clearAndHideErrors();
-
         })
         .catch(function (error) {
-
             if (error.response.data.errors !== undefined) {
                 showErrorMessages(error.response.data.errors);
             } else {
-
                 showMessage(error.response.data);
             }
         });
 }
-function storeRedirect (url, data, redirectUrl) {
-    axios.post( url, data)
+function storeRedirect(url, data, redirectUrl) {
+    axios
+        .post(url, data)
+        .then(function (response) {
+            if (redirectUrl != null) window.location.href = redirectUrl;
+        })
+        .catch(function (error) {
+            if (error.response.data.errors !== undefined) {
+                showErrorMessages(error.response.data.errors);
+            } else {
+                showMessage(error.response.data);
+            }
+        });
+}
+
+function update(url, data, redirectUrl) {
+    axios
+        .put(url, data)
+
         .then(function (response) {
             console.log(response);
-            if (redirectUrl != null)
-                window.location.href = redirectUrl;
+
+            if (redirectUrl != null) window.location.href = redirectUrl;
         })
         .catch(function (error) {
             console.log(error.response);
         });
 }
-
-function update (url, data, redirectUrl) {
-    axios.put( url, data)
+function updateRoute(url, data) {
+    axios
+        .put(url, data)
 
         .then(function (response) {
             console.log(response);
 
-            if (redirectUrl != null)
-                window.location.href = redirectUrl;
+            window.location = response.data.redirect;
         })
         .catch(function (error) {
             console.log(error.response);
         });
 }
-function updateRoute (url, data) {
-    axios.put( url, data)
-
+function updateReload(url, data, redirectUrl) {
+    axios
+        .put(url, data)
         .then(function (response) {
             console.log(response);
-
-        window.location = response.data.redirect;
-
-        })
-        .catch(function (error) {
-            console.log(error.response);
-        });
-}
-function updateReload (url, data, redirectUrl) {
-    axios.put( url, data)
-        .then(function (response) {
-            console.log(response);
-            location.reload()
+            location.reload();
         })
         .catch(function (error) {
             console.log(error.response);
         });
 }
 function updatePage(url, data) {
-    axios.post(url, data)
+    axios
+        .post(url, data)
         .then(function (response) {
             console.log(response);
-            location.reload()
+            location.reload();
             // showMessage(response.data);
-         })
+        })
         .catch(function (error) {
             console.log(error.response);
         });
@@ -124,14 +120,14 @@ function updatePage(url, data) {
 
 function confirmDestroy(url, td) {
     Swal.fire({
-        title: 'هل أنت متأكد من عملية الحذف ؟',
+        title: "هل أنت متأكد من عملية الحذف ؟",
         text: "لا يمكن التراجع عن عملية الحذف",
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'نعم',
-        cancelButtonText: 'لا',
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "نعم",
+        cancelButtonText: "لا",
     }).then((result) => {
         if (result.isConfirmed) {
             destroy(url, td);
@@ -139,45 +135,42 @@ function confirmDestroy(url, td) {
     });
 }
 
-
 function destroy(url, td) {
-    axios.delete(url)
+    axios
+        .delete(url)
         .then(function (response) {
             // handle success
-            console.log(response.data);
-            td.closest('tr').remove();
-            // showToaster(response.data.message, true);
+            console.log(response);
+            showMessage(response.data);
+            td.closest("tr").remove();
         })
         .catch(function (error) {
             // handle error
             console.log(error.response);
-            // showToaster(error.response.data.message, false);
+            showMessage(error.response.response.data);
         })
         .then(function () {
             // always executed
+            showMessage(response.data);
         });
 }
 
-
-
-
 function showErrorMessages(errors) {
-
-    document.getElementById('error_alert').hidden = false
+    document.getElementById("error_alert").hidden = false;
     var errorMessagesUl = document.getElementById("error_messages_ul");
-    errorMessagesUl.innerHTML = '';
+    errorMessagesUl.innerHTML = "";
 
     for (var key of Object.keys(errors)) {
-        var newLI = document.createElement('li');
+        var newLI = document.createElement("li");
         newLI.appendChild(document.createTextNode(errors[key]));
         errorMessagesUl.appendChild(newLI);
     }
 }
 
 function clearAndHideErrors() {
-    document.getElementById('error_alert').hidden = true
+    document.getElementById("error_alert").hidden = true;
     var errorMessagesUl = document.getElementById("error_messages_ul");
-    errorMessagesUl.innerHTML = '';
+    errorMessagesUl.innerHTML = "";
 }
 
 function clearForm() {
@@ -187,10 +180,10 @@ function clearForm() {
 function showMessage(data) {
     console.log(data);
     Swal.fire({
-        position: 'center',
+        position: "center",
         icon: data.icon,
         title: data.title,
         showConfirmButton: false,
-        timer: 1500
-    })
+        timer: 1500,
+    });
 }

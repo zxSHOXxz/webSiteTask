@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use App\Models\User;
+use App\Traits\UserTypeTrait;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
+    use UserTypeTrait;
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +20,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::all();
+        $students = Student::with('user')->get();
         return view('cms.students.index', compact('students'));
     }
 
@@ -36,7 +42,14 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            DB::transaction(function () use ($request) {
+                $this->createUser($request, 'student');
+            });
+            return response()->json(['icon' => 'success', 'title' => 'تمت عملية الحفظ بنجاح'], 200);
+        } catch (Exception $e) {
+            return response()->json(['icon' => 'error', 'title' => $e->getMessage()], 400);
+        }
     }
 
     /**
@@ -58,7 +71,7 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        //
+        return view('cms.students.edit', ['student' => $student]);
     }
 
     /**
@@ -68,9 +81,16 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(Request $request, $id)
     {
-        //
+        try {
+            DB::transaction(function () use ($request, $id) {
+                $this->updateUser($request, 'student', $id);
+            });
+            return response()->json(['icon' => 'success', 'title' => 'تمت عملية التحديث بنجاح'], 200);
+        } catch (Exception $e) {
+            return response()->json(['icon' => 'error', 'title' => $e->getMessage()], 400);
+        }
     }
 
     /**
@@ -79,8 +99,13 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Student $student)
+    public function destroy($id)
     {
-        //
+        $student = Student::findOrFail($id);
+        $user = $student->user;
+        $user = User::destroy($user->id);
+        $student = Student::destroy($id);
+
+        return response()->json(['icon' => 'success', 'title' => 'Deleted is Successfully'], $student ? 200 : 400);
     }
 }

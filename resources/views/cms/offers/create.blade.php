@@ -1,8 +1,8 @@
 @extends('cms.master')
-@section('title', 'التصنيفات')
+@section('title', 'الخصومات')
 
-@section('tittle_1', ' اضافة التصنيف ')
-@section('tittle_2', ' اضافة التصنيف ')
+@section('tittle_1', ' اضافة خصم ')
+@section('tittle_2', ' اضافة خصم ')
 
 
 @section('styles')
@@ -21,37 +21,56 @@
     <!-- Basic datatable -->
     <div class="card">
         <div class="card-header">
-            <h5 class="mb-0">اضافة تصنيف</h5>
+            <h5 class="mb-0">اضافة خصم</h5>
         </div>
 
         <div class="card-body">
             <!-- Right aligned buttons -->
             <div class="card">
                 <div class="card-header">
-                    <h6 class="mb-0"> اضافة تصنيف </h6>
+                    <h6 class="mb-0"> اضافة خصم </h6>
                 </div>
                 <div class="card-body">
                     <form action="#">
                         <div class="mb-3">
-                            <label class="form-label">اسم التصنيف</label>
-                            <input type="text" name="name" id="name" class="form-control"
-                                placeholder="اسم التصنيف">
+                            <label class="form-label">عنوان الخصم</label>
+                            <input type="text" name="title" id="title" class="form-control"
+                                placeholder="عنوان الخصم">
                         </div>
                         <div class="mb-3">
-                            <div class="form-group">
-                                <label for="parent_id">الفئة الأب:</label>
-                                <select name="parent_id" id="parent_id" class="form-control">
-                                    <option value="">بدون فئة أب</option>
-                                    @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            <label class="form-label">قيمة</label>
+                            <input type="text" name="value" id="value" class="form-control"
+                                placeholder="قيمة الخصم">
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-form-label col-lg-3">تاريخ الانتهاء</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="date" id="expiration_date" name="expiration_date">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-form-label col-lg-3">الحالة</label>
+                            <div class="col-lg-9">
+                                <select data-placeholder="الحالة" name="status" id="status"
+                                    class="form-control select-icons">
+                                    <option value="active">فعال</option>
+                                    <option value="expired">منتهي</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-form-label col-lg-3">الدورات</label>
+                            <div class="col-lg-9">
+                                <select data-placeholder="الدورات" name="course_id" id="course_id"
+                                    class="form-control select-icons">
+                                    @foreach ($courses as $course)
+                                        <option value="{{ $course->id }}">{{ $course->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
-
-
                         <div class="d-flex justify-content-end align-items-center">
-                            <a href="{{ route('categoaries.index') }}" class="btn btn-light">الغاء</a>
+                            <a href="{{ route('offers.index') }}" class="btn btn-light">الغاء</a>
                             <button type="button" onclick="performStore()" class="btn btn-primary ms-3"> اضافة <i
                                     class="ph-paper-plane-tilt ms-2"></i></button>
                         </div>
@@ -77,44 +96,12 @@
     <script>
         function performStore() {
             let formData = new FormData();
-            formData.append('name', document.getElementById('name').value);
-            formData.append('parent_id', document.getElementById('parent_id').value);
-            storeAndUpdateSelect('/cms/admin/categoaries', formData)
-            function storeAndUpdateSelect(url, data) {
-                axios.post(url, data)
-                    .then(function(response) {
-                        showMessage(response.data);
-                        clearForm();
-                        clearAndHideErrors();
-                        updateSelect(data);
-                    })
-                    .catch(function(error) {
-
-                        if (error.response.data.errors !== undefined) {
-                            showErrorMessages(error.response.data.errors);
-                        } else {
-
-                            showMessage(error.response.data);
-                        }
-                    });
-
-            }
-        }
-        function updateSelect(data) {
-            let selectElement = document.getElementById('parent_id');
-            selectElement.innerHTML = '';
-
-            let optionElement = document.createElement('option');
-            optionElement.value = '';
-            optionElement.textContent = 'بدون فئة أب';
-            selectElement.appendChild(optionElement);
-
-            data.forEach(function(category) {
-                let optionElement = document.createElement('option');
-                optionElement.value = category.id;
-                optionElement.textContent = category.name;
-                selectElement.appendChild(optionElement);
-            });
+            formData.append('title', document.getElementById('title').value);
+            formData.append('expiration_date', document.getElementById('expiration_date').value);
+            formData.append('value', document.getElementById('value').value);
+            formData.append('status', document.getElementById('status').value);
+            formData.append('course_id', document.getElementById('course_id').value);
+            store('/cms/admin/offers', formData);
         }
     </script>
 @endsection

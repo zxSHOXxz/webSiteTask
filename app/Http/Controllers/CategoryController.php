@@ -99,7 +99,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('cms.categories.edit', compact('category'));
     }
 
     /**
@@ -111,7 +111,44 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $validator = validator($request->all(), [
+            'name' => 'required|string|min:3|max:20',
+        ], [
+            'name.required' => 'الإسم مطلوب',
+            'name.min' => 'لا يقبل أقل من 3 حروف',
+            'name.max' => 'لا يقبل أكثر من 20 حروف',
+        ]);
+
+        DB::beginTransaction();
+
+        try {
+            if (!$validator->fails()) {
+
+                $category->name = $request->get('name');
+
+                if (request()->hasFile('image')) {
+                    $image = $request->file('image');
+                    $imageName = time() . 'image.' . $image->getClientOriginalExtension();
+                    $image->move('storage/images/category', $imageName);
+                    $category->image = $imageName;
+                }
+
+                $isSaved = $category->save();
+
+                if ($isSaved) {
+                    DB::commit();
+                    return response()->json(['icon' => 'success', 'title' => "تمت الإضافة بنجاح"], 200);
+                } else {
+                    DB::rollBack();
+                    return response()->json(['icon' => 'error', 'title' => "فشلت عملية التخزين"], 400);
+                }
+            } else {
+                return response()->json(['icon' => 'error', 'title' => $validator->getMessageBag()->first()], 400);
+            }
+        } catch (Exception $e) {
+            DB::rollBack();
+            return response()->json(['icon' => 'error', 'title' => $e->getMessage()], 500);
+        }
     }
 
     /**
@@ -120,8 +157,9 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        //
+        $category = Category::destroy($id);
+        return response()->json(['icon' => 'success', 'title' => 'Deleted is Successfully'], $category ? 200 : 400);
     }
 }

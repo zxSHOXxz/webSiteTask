@@ -13,12 +13,16 @@ class Course extends Model
     {
         return $this->belongsTo(Category::class);
     }
+    public function trainer()
+    {
+        return $this->belongsTo(Trainer::class);
+    }
 
     public function interactiveSessions()
     {
         return $this->hasMany(InteractiveSession::class);
     }
-    
+
     public function user_reviews()
     {
         return $this->hasMany(UserReviews::class);

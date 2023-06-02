@@ -35,10 +35,10 @@ Route::prefix('cms/')->middleware('guest:admin,trainer,student')->group(function
 Route::prefix('cms/admin')->middleware(['auth:admin,student,trainer'])->group(function () {
 
     Route::resource('categories', CategoryController::class);
-    Route::post('categories_update/{id}', [CategoryController::class, 'update'])->name('categories_update');
+    Route::post('categories_update/{category}', [CategoryController::class, 'update'])->name('categories_update');
 
     Route::resource('courses', CourseController::class);
-    Route::post('courses_update/{id}', [CourseController::class, 'update'])->name('categories_update');
+    Route::post('courses_update/{id}', [CourseController::class, 'update'])->name('courses_update');
 
     Route::resource('interactive_session', InteractiveSessionController::class);
     Route::post('interactive_session_update/{id}', [InteractiveSessionController::class, 'update'])->name('interactive_session_update');

@@ -69,6 +69,8 @@
     <script src="{{ asset('cms/assets/js/vendor/forms/selects/select2.min.js') }}"></script>
     <script src="{{ asset('cms/assets/demo/pages/form_select2.js') }}"></script>
     <script>
+
+        
         function performStore() {
             let formData = new FormData();
             formData.append('name', document.getElementById('name').value);
