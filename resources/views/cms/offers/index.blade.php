@@ -1,8 +1,8 @@
 @extends('cms.master')
-@section('title', 'التصنيفات')
+@section('title', 'الخصومات')
 
-@section('tittle_1', ' عرض التصنيفات ')
-@section('tittle_2', ' عرض التصنيفات ')
+@section('tittle_1', ' عرض الخصومات ')
+@section('tittle_2', ' عرض الخصومات ')
 
 
 @section('styles')
@@ -21,37 +21,30 @@
     <!-- Basic datatable -->
     <div class="card">
         <div class="card-header">
-            <h5 class="mb-0">قائمة التصنيفات</h5>
+            <h5 class="mb-0">قائمة الخصومات</h5>
         </div>
 
         <table class="table datatable-basic">
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>الصورة</th>
                     <th>العنوان</th>
-                    <th>حول</th>
-                    <th>الوصف</th>
-                    <th>السعر</th>
-                    <th>الساعات</th>
-                    <th>التصنيف</th>
-                    <th>المدرب</th>
+                    <th>القيمة</th>
+                    <th>تاريخ الانتهاء</th>
+                    <th>الحالة</th>
+                    <th>الدورة</th>
                     <th class="div-center">الاجراءات</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($courses as $course)
+                @foreach ($offers as $offer)
                     <tr>
-                        <td>{{ $course->id }}</td>
-                        <td><img class="rounded-circle w-80px" src="{{ asset('storage/images/category/' . $course->image) }}">
-                        </td>
-                        <td>{{ $course->title }}</td>
-                        <td>{{ $course->about }}</td>
-                        <td>{{ $course->description }}</td>
-                        <td>{{ $course->price }}</td>
-                        <td>{{ $course->hours }}</td>
-                        <td>{{ $course->category->name }}</td>
-                        <td>{{ $course->trainer->user->name }}</td>
+                        <td>{{ $offer->id }}</td>
+                        <td>{{ $offer->title }}</td>
+                        <td>{{ $offer->value }}</td>
+                        <td>{{ $offer->expiration_date }}</td>
+                        <td>{{ $offer->status }}</td>
+                        <td>{{ $offer->course->title }}</td>
                         <td class="div-center">
                             <div class="d-inline-flex">
                                 <div class="dropdown">
@@ -60,11 +53,11 @@
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-end">
-                                        <a href="{{ route('courses.edit', $course->id) }}" class="dropdown-item">
+                                        <a href="{{ route('offers.edit', $offer->id) }}" class="dropdown-item">
                                             <i class="ph-file-doc me-2"></i>
                                             تعديل
                                         </a>
-                                        <a href="#" onclick="performDestroy({{ $course->id }},this)"
+                                        <a href="#" onclick="performDestroy({{ $offer->id }},this)"
                                             class="dropdown-item">
                                             <i class="ph-file-doc me-2"></i>
                                             حذف
@@ -90,7 +83,7 @@
 @section('scripts')
     <script>
         function performDestroy(id, referance) {
-            let url = '/cms/admin/courses/' + id;
+            let url = '/cms/admin/offers/' + id;
             confirmDestroy(url, referance);
         }
         /* ------------------------------------------------------------------------------

@@ -41,7 +41,7 @@
             <tbody>
                 @foreach ($trainers as $trainer)
                     <tr>
-                        <td><img class="rounded-circle w-80px"
+                        <td><img class="rounded-circle w-48px h-48px"
                                 src="{{ asset('storage/images/trainer/' . $trainer->user->image) }}"></td>
                         <td>{{ $trainer->user->name ?? null }}</td>
                         <td>{{ $trainer->email ?? null }}</td>

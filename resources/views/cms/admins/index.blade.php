@@ -1,8 +1,8 @@
 @extends('cms.master')
-@section('title', 'التصنيفات')
+@section('title', 'المشرفين')
 
-@section('tittle_1', ' عرض التصنيفات ')
-@section('tittle_2', ' عرض التصنيفات ')
+@section('tittle_1', ' عرض المشرفين ')
+@section('tittle_2', ' عرض المشرفين ')
 
 
 @section('styles')
@@ -21,39 +21,36 @@
     <!-- Basic datatable -->
     <div class="card">
         <div class="card-header">
-            <h5 class="mb-0">قائمة التصنيفات</h5>
+            <h5 class="mb-0">قائمة المشرفين</h5>
         </div>
 
         <table class="table datatable-basic">
             <thead>
                 <tr>
-                    <th>#</th>
                     <th>الصورة</th>
+                    <th>الاسم</th>
+                    <th>الايميل</th>
                     <th>العنوان</th>
-                    <th>الاهداف</th>
-                    <th>الوصف</th>
-                    <th>المدربين</th>
-
+                    <th>المدينة</th>
+                    <th>الحالة</th>
+                    <th>تاريخ الميلاد</th>
+                    <th>الجنس</th>
                     <th class="div-center">الاجراءات</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($interactiveSessions as $interactiveSession)
+                @foreach ($admins as $admin)
                     <tr>
-                        <td>{{ $interactiveSession->id }}</td>
                         <td><img class="rounded-circle w-48px h-48px"
-                                src="{{ asset('storage/images/interactive_session/' . $interactiveSession->image) }}">
+                                src="{{ asset('storage/images/admin/' . $admin->user->image) }}"></td>
+                        <td>{{ $admin->user->name ?? null }}</td>
+                        <td>{{ $admin->email ?? null }}</td>
+                        <td>{{ $admin->user->address ?? null }}</td>
+                        <td>{{ $admin->user->city ?? null }}</td>
+                        <td>{{ (($admin->user->status == 'separated' ? 'مطلق' : $admin->user->status == 'single') ? 'اعزب' : $admin->user->status == 'married') ? 'متزوج' : null }}
                         </td>
-                        <td>{{ $interactiveSession->tittle }}</td>
-                        <td>{{ $interactiveSession->description }}</td>
-                        <td>{{ $interactiveSession->goals }}</td>
-                        <td>
-                            <ul>
-                                @foreach ($interactiveSession->trainers as $trainer)
-                                    <li> {{ $trainer->user->name }} </li>
-                                @endforeach
-                            </ul>
-
+                        <td>{{ $admin->user->birthday ?? null }}</td>
+                        <td>{{ ($admin->user->gender == 'male' ? 'ذكر' : $admin->user->gender == 'female') ? 'انثى' : null }}
                         </td>
                         <td class="div-center">
                             <div class="d-inline-flex">
@@ -63,12 +60,11 @@
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-end">
-                                        <a href="{{ route('interactive_session.edit', $interactiveSession->id) }}"
-                                            class="dropdown-item">
+                                        <a href="{{ route('admins.edit', $admin->id) }}" class="dropdown-item">
                                             <i class="ph-file-doc me-2"></i>
                                             تعديل
                                         </a>
-                                        <a href="#" onclick="performDestroy({{ $interactiveSession->id }},this)"
+                                        <a href="#" onclick="performDestroy({{ $admin->id }},this)"
                                             class="dropdown-item">
                                             <i class="ph-file-doc me-2"></i>
                                             حذف
@@ -94,7 +90,7 @@
 @section('scripts')
     <script>
         function performDestroy(id, referance) {
-            let url = '/cms/admin/interactive_session/' + id;
+            let url = '/cms/admin/admins/' + id;
             confirmDestroy(url, referance);
         }
         /* ------------------------------------------------------------------------------

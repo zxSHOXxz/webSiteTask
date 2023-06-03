@@ -18,5 +18,5 @@ class InteractiveSession extends Model
     {
         return $this->belongsToMany(Trainer::class, 'interactive_session_trainer', 'interactive_session_id', 'trainer_id');
     }
-    
+
 }

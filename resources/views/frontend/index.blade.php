@@ -65,7 +65,7 @@
                         </div>
                         <div class="col-6 profile d-flex gap-4 align-items-center">
                             <div class="person-image">
-                                <img src="img/square-small.svg" alt="">
+                                <img src="{{ asset('front/assets/img/square-small.svg') }}" alt="">
                             </div>
                             <div class="language">
                                 <li class="nav-item dropdown">
@@ -112,7 +112,7 @@
                         </div>
                     </div>
                     <div class="carousel-item ">
-                        <img class="d-block w-100" src="img/image.svg" alt="First slide">
+                        <img class="d-block w-100" src="{{ asset('front/assets/img/image.svg') }}" alt="First slide">
                         <div class="carousel-caption text-end w-100">
                             <div class="container">
                                 <h2 class="w-100 mb-4">دائما انظر الى الجانب المشرق للحياة</h2>
@@ -148,360 +148,44 @@
             </div>
             <div class="custom-nav"></div>
             <div class="owl-carousel owl-one owl-theme">
-                <div class="item" data-owl="1">
-                    <div class="post d-flex justify-content-between gap-4">
-                        <div class="img">
-                            <img src="img/cards-slider/Rectangle.svg" alt="">
-                        </div>
-                        <div class="left px-3 pt-2">
-                            <div class="text">
-                                <h3>
-                                    <a href="">مئه يوم من البرمجة</a>
-                                </h3>
-                                <p>
-                                    أنا سعيد لأنني أخذت هذه الدورة. كان هناك دائمًا شيء لنتعلمه في كل درس. دفاتر
-                                    المتوفرة مفيدة
-                                    للغاية.كثيرًا أيضًا
-                                </p>
+                @foreach ($interactiveSessions as $interactiveSession)
+                    <div class="item" data-owl="1">
+                        <div class="post d-flex justify-content-between gap-4">
+                            <div class="img">
+                                <img src="{{ asset('storage/images/interactive_session/' . $interactiveSession->image) }}"
+                                    alt="">
                             </div>
-                            <div class="doctor d-flex justify-content-between align-items-center">
-                                <div class="profile d-flex justify-content-between align-items-center">
-                                    <div class="img">
-                                        <img src="img/cards-slider/doctors/Gerock-LS (2).svg" alt="">
-                                    </div>
-                                    <div class="name d-flex justify-content-between align-items-center">
-                                        الدكتورة أنجيلا يو
-                                    </div>
+                            <div class="left px-3 pt-2">
+                                <div class="text">
+                                    <h3>
+                                        <a href="">{{ $interactiveSession->tittle }}</a>
+                                    </h3>
+                                    <p>
+                                        {{ $interactiveSession->description }}
+                                    </p>
                                 </div>
-                                <div class="time">
-                                    <span class="badge badge-danger">02:15:02</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item" data-owl="1">
-                    <div class="post d-flex justify-content-between gap-4">
-                        <div class="img">
-                            <img src="img/cards-slider/maxresdefault.svg" alt="">
-                        </div>
-                        <div class="left px-3 pt-2">
-                            <div class="text">
-                                <h3>
-                                    <a href="">مئه يوم من البرمجة</a>
-                                </h3>
-                                <p>
-                                    أنا سعيد لأنني أخذت هذه الدورة. كان هناك دائمًا شيء لنتعلمه في كل درس. دفاتر
-                                    المتوفرة مفيدة
-                                    للغاية.كثيرًا أيضًا
-                                </p>
-                            </div>
-                            <div class="doctor d-flex justify-content-between align-items-center">
-                                <div class="profile d-flex justify-content-between align-items-center">
-                                    <div class="img">
-                                        <img src="img/cards-slider/doctors/Gerock-LS (2).svg" alt="">
+                                <div class="doctor d-flex justify-content-between align-items-center">
+                                    <div class="profile d-flex justify-content-between align-items-center">
+                                        <div class="img">
+                                            <img src="{{ asset('storage/images/trainer/' . $interactiveSession->course->trainer->user->image) }}"
+                                                alt="">
+                                        </div>
+                                        <div class="name d-flex justify-content-between align-items-center">
+                                            {{ $interactiveSession->course->trainer->user->name }}
+                                        </div>
                                     </div>
-                                    <div class="name d-flex justify-content-between align-items-center">
-                                        الدكتورة أنجيلا يو
+                                    <div class="time">
+                                        <span class="badge badge-danger">02:15:02</span>
                                     </div>
-                                </div>
-                                <div class="time">
-                                    <span class="badge badge-danger">02:15:02</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="item" data-owl="1">
-                    <div class="post d-flex justify-content-between gap-4">
-                        <div class="img">
-                            <img src="img/cards-slider/Onlineeducation.svg" alt="">
-                        </div>
-                        <div class="left px-3 pt-2">
-                            <div class="text">
-                                <h3>
-                                    <a href="">مئه يوم من البرمجة</a>
-                                </h3>
-                                <p>
-                                    أنا سعيد لأنني أخذت هذه الدورة. كان هناك دائمًا شيء لنتعلمه في كل درس. دفاتر
-                                    المتوفرة مفيدة
-                                    للغاية.كثيرًا أيضًا
-                                </p>
-                            </div>
-                            <div class="doctor d-flex justify-content-between align-items-center">
-                                <div class="profile d-flex justify-content-between align-items-center">
-                                    <div class="img">
-                                        <img src="img/cards-slider/doctors/Gerock-LS (2).svg" alt="">
-                                    </div>
-                                    <div class="name d-flex justify-content-between align-items-center">
-                                        الدكتورة أنجيلا يو
-                                    </div>
-                                </div>
-                                <div class="time">
-                                    <span class="badge badge-danger">02:15:02</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item" data-owl="1">
-                    <div class="post d-flex justify-content-between gap-4">
-                        <div class="img">
-                            <img src="img/cards-slider/Rectangle.svg" alt="">
-                        </div>
-                        <div class="left px-3 pt-2">
-                            <div class="text">
-                                <h3>
-                                    <a href="">مئه يوم من البرمجة</a>
-                                </h3>
-                                <p>
-                                    أنا سعيد لأنني أخذت هذه الدورة. كان هناك دائمًا شيء لنتعلمه في كل درس. دفاتر
-                                    المتوفرة مفيدة
-                                    للغاية.كثيرًا أيضًا
-                                </p>
-                            </div>
-                            <div class="doctor d-flex justify-content-between align-items-center">
-                                <div class="profile d-flex justify-content-between align-items-center">
-                                    <div class="img">
-                                        <img src="img/cards-slider/doctors/Gerock-LS (2).svg" alt="">
-                                    </div>
-                                    <div class="name d-flex justify-content-between align-items-center">
-                                        الدكتورة أنجيلا يو
-                                    </div>
-                                </div>
-                                <div class="time">
-                                    <span class="badge badge-danger">02:15:02</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item" data-owl="1">
-                    <div class="post d-flex justify-content-between gap-4">
-                        <div class="img">
-                            <img src="img/cards-slider/maxresdefault.svg" alt="">
-                        </div>
-                        <div class="left px-3 pt-2">
-                            <div class="text">
-                                <h3>
-                                    <a href="">مئه يوم من البرمجة</a>
-                                </h3>
-                                <p>
-                                    أنا سعيد لأنني أخذت هذه الدورة. كان هناك دائمًا شيء لنتعلمه في كل درس. دفاتر
-                                    المتوفرة مفيدة
-                                    للغاية.كثيرًا أيضًا
-                                </p>
-                            </div>
-                            <div class="doctor d-flex justify-content-between align-items-center">
-                                <div class="profile d-flex justify-content-between align-items-center">
-                                    <div class="img">
-                                        <img src="img/cards-slider/doctors/Gerock-LS (2).svg" alt="">
-                                    </div>
-                                    <div class="name d-flex justify-content-between align-items-center">
-                                        الدكتورة أنجيلا يو
-                                    </div>
-                                </div>
-                                <div class="time">
-                                    <span class="badge badge-danger">02:15:02</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item" data-owl="1">
-                    <div class="post d-flex justify-content-between gap-4">
-                        <div class="img">
-                            <img src="img/cards-slider/Onlineeducation.svg" alt="">
-                        </div>
-                        <div class="left px-3 pt-2">
-                            <div class="text">
-                                <h3>
-                                    <a href="">مئه يوم من البرمجة</a>
-                                </h3>
-                                <p>
-                                    أنا سعيد لأنني أخذت هذه الدورة. كان هناك دائمًا شيء لنتعلمه في كل درس. دفاتر
-                                    المتوفرة مفيدة
-                                    للغاية.كثيرًا أيضًا
-                                </p>
-                            </div>
-                            <div class="doctor d-flex justify-content-between align-items-center">
-                                <div class="profile d-flex justify-content-between align-items-center">
-                                    <div class="img">
-                                        <img src="img/cards-slider/doctors/Gerock-LS (2).svg" alt="">
-                                    </div>
-                                    <div class="name d-flex justify-content-between align-items-center">
-                                        الدكتورة أنجيلا يو
-                                    </div>
-                                </div>
-                                <div class="time">
-                                    <span class="badge badge-danger">02:15:02</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item" data-owl="1">
-                    <div class="post d-flex justify-content-between gap-4">
-                        <div class="img">
-                            <img src="img/cards-slider/Rectangle.svg" alt="">
-                        </div>
-                        <div class="left px-3 pt-2">
-                            <div class="text">
-                                <h3>
-                                    <a href="">مئه يوم من البرمجة</a>
-                                </h3>
-                                <p>
-                                    أنا سعيد لأنني أخذت هذه الدورة. كان هناك دائمًا شيء لنتعلمه في كل درس. دفاتر
-                                    المتوفرة مفيدة
-                                    للغاية.كثيرًا أيضًا
-                                </p>
-                            </div>
-                            <div class="doctor d-flex justify-content-between align-items-center">
-                                <div class="profile d-flex justify-content-between align-items-center">
-                                    <div class="img">
-                                        <img src="img/cards-slider/doctors/Gerock-LS (2).svg" alt="">
-                                    </div>
-                                    <div class="name d-flex justify-content-between align-items-center">
-                                        الدكتورة أنجيلا يو
-                                    </div>
-                                </div>
-                                <div class="time">
-                                    <span class="badge badge-danger">02:15:02</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item" data-owl="1">
-                    <div class="post d-flex justify-content-between gap-4">
-                        <div class="img">
-                            <img src="img/cards-slider/maxresdefault.svg" alt="">
-                        </div>
-                        <div class="left px-3 pt-2">
-                            <div class="text">
-                                <h3>
-                                    <a href="">مئه يوم من البرمجة</a>
-                                </h3>
-                                <p>
-                                    أنا سعيد لأنني أخذت هذه الدورة. كان هناك دائمًا شيء لنتعلمه في كل درس. دفاتر
-                                    المتوفرة مفيدة
-                                    للغاية.كثيرًا أيضًا
-                                </p>
-                            </div>
-                            <div class="doctor d-flex justify-content-between align-items-center">
-                                <div class="profile d-flex justify-content-between align-items-center">
-                                    <div class="img">
-                                        <img src="img/cards-slider/doctors/Gerock-LS (2).svg" alt="">
-                                    </div>
-                                    <div class="name d-flex justify-content-between align-items-center">
-                                        الدكتورة أنجيلا يو
-                                    </div>
-                                </div>
-                                <div class="time">
-                                    <span class="badge badge-danger">02:15:02</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item" data-owl="1">
-                    <div class="post d-flex justify-content-between gap-4">
-                        <div class="img">
-                            <img src="img/cards-slider/Onlineeducation.svg" alt="">
-                        </div>
-                        <div class="left px-3 pt-2">
-                            <div class="text">
-                                <h3>
-                                    <a href="">مئه يوم من البرمجة</a>
-                                </h3>
-                                <p>
-                                    أنا سعيد لأنني أخذت هذه الدورة. كان هناك دائمًا شيء لنتعلمه في كل درس. دفاتر
-                                    المتوفرة مفيدة
-                                    للغاية.كثيرًا أيضًا
-                                </p>
-                            </div>
-                            <div class="doctor d-flex justify-content-between align-items-center">
-                                <div class="profile d-flex justify-content-between align-items-center">
-                                    <div class="img">
-                                        <img src="img/cards-slider/doctors/Gerock-LS (2).svg" alt="">
-                                    </div>
-                                    <div class="name d-flex justify-content-between align-items-center">
-                                        الدكتورة أنجيلا يو
-                                    </div>
-                                </div>
-                                <div class="time">
-                                    <span class="badge badge-danger">02:15:02</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
     <!-- end section cards slider -->
-
-    <!-- fetures -->
-    <section class="fetures py-5 overflow-hidden">
-        <div class="container">
-            <div class="row row-cols-1 row-cols-md-3 g-sm-3">
-                <div class="col-md-4 my-3 ">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-4">
-                                    <img src="img/features/susan_gerock-400x400.svg" alt="Avatar"
-                                        class="card-img-circle">
-                                </div>
-                                <div class="col-8 card-divider">
-                                    <h5 class="card-title">الذهاب في وتيرة الخاصة بك</h5>
-                                    <p class="card-text">تمتع بالوصول مدى الحياة إلى الدورات التدريبية على الموقع
-                                        الإلكتروني والتطبيق</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 my-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-4">
-                                    <img src="img/features/square-small.svg" alt="Avatar" class="card-img-circle">
-                                </div>
-                                <div class="col-8 card-divider">
-                                    <h5 class="card-title">الذهاب في وتيرة الخاصة بك</h5>
-                                    <p class="card-text">تمتع بالوصول مدى الحياة إلى الدورات التدريبية على الموقع
-                                        الإلكتروني والتطبيق</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 my-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-4">
-                                    <img src="img/features/Gerock-LS (2).svg" alt="Avatar" class="card-img-circle">
-                                </div>
-                                <div class="col-8 card-divider">
-                                    <h5 class="card-title">ابحث عن دورات فيديو </h5>
-                                    <p class="card-text">تمتع بالوصول مدى الحياة إلى الدورات التدريبية على الموقع
-                                        الإلكتروني والتطبيق</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- يمكنك إضافة بطاقات إضافية هنا -->
-
-            </div>
-        </div>
-    </section>
-    <!-- fetures -->
-
 
     <!-- courses -->
     <section class="courses py-5 overflow-hidden">
@@ -512,72 +196,18 @@
                 </div>
             </div>
             <div class="owl-carousel owl-two owl-theme">
-                <div class="item" data-owl="2">
-                    <div class="card">
-                        <img src="img/courses/Rectangle.svg" alt="Post Image" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                            <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة ملخص عنهاشرح عن
-                                الدورة أو
-                                كتابة ملخص عنها</p>
+                @foreach ($courses as $course)
+                    <div class="item" data-owl="2">
+                        <div class="card">
+                            <img src="{{ asset('storage/images/category/' . $course->image) }}" alt="Post Image"
+                                class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title"><a href="">{{ $course->title }}</a></h5>
+                                <p class="card-text">{{ $course->description }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="item" data-owl="2">
-                    <div class="card">
-                        <img src="img/courses/2/Rectangle.svg" alt="Post Image" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                            <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة ملخص عنهاشرح عن
-                                الدورة أو
-                                كتابة ملخص عنها</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="item" data-owl="2">
-                    <div class="card">
-                        <img src="img/courses/3/Rectangle.svg" alt="Post Image" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                            <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة ملخص عنهاشرح عن
-                                الدورة أو
-                                كتابة ملخص عنها</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="item" data-owl="2">
-                    <div class="card">
-                        <img src="img/courses/Rectangle.svg" alt="Post Image" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                            <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة ملخص عنهاشرح عن
-                                الدورة أو
-                                كتابة ملخص عنها</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="item" data-owl="2">
-                    <div class="card">
-                        <img src="img/courses/2/Rectangle.svg" alt="Post Image" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                            <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة ملخص عنهاشرح عن
-                                الدورة أو
-                                كتابة ملخص عنها</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="item" data-owl="2">
-                    <div class="card">
-                        <img src="img/courses/3/Rectangle.svg" alt="Post Image" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                            <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة ملخص عنهاشرح عن
-                                الدورة أو
-                                كتابة ملخص عنها</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -610,60 +240,20 @@
             </div>
             <div class="custom-nav-three"></div>
             <div class="owl-carousel owl-three owl-theme">
-                <div class="item" data-owl="3">
-                    <div class="card py-4 text-center d-flex justify-content-center align-items-center flex-column">
-                        <img src="img/seveices/Mask Group 27.svg" class="card-img-top" alt="تصوير الخدمة">
-                        <div class="card-body">
-                            <h5 class="card-title">تصميم جرافيكي</h5>
-                            <p class="card-text">وصف الدورة بشكل مختصر</p>
+                @foreach ($courses as $course)
+                    <div class="item" data-owl="3">
+                        <div
+                            class="card py-4 text-center d-flex justify-content-center align-items-center flex-column">
+                            <img src="{{ asset('storage/images/category/' . $course->image) }}" class="card-img-top"
+                                alt="تصوير الخدمة">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $course->title }}</h5>
+                                <p class="card-text">{{ $course->description }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="item" data-owl="3">
-                    <div class="card py-4 text-center d-flex justify-content-center align-items-center flex-column">
-                        <img src="img/seveices/Mask Group 30.svg" class="card-img-top" alt="تصوير الخدمة">
-                        <div class="card-body">
-                            <h5 class="card-title">هندسة معماري</h5>
-                            <p class="card-text">وصف الدورة بشكل مختصر</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="item" data-owl="3">
-                    <div class="card py-4 text-center d-flex justify-content-center align-items-center flex-column">
-                        <img src="img/seveices/Mask Group 31.svg" class="card-img-top" alt="تصوير الخدمة">
-                        <div class="card-body">
-                            <h5 class="card-title">هندسة مدني</h5>
-                            <p class="card-text">وصف الدورة بشكل مختصر</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="item" data-owl="3">
-                    <div class="card py-4 text-center d-flex justify-content-center align-items-center flex-column">
-                        <img src="img/seveices/Mask Group 34.svg" class="card-img-top" alt="تصوير الخدمة">
-                        <div class="card-body">
-                            <h5 class="card-title">برمجة ويب</h5>
-                            <p class="card-text">وصف الدورة بشكل مختصر</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="item" data-owl="3">
-                    <div class="card py-4 text-center d-flex justify-content-center align-items-center flex-column">
-                        <img src="img/seveices/Mask Group 27.svg" class="card-img-top" alt="تصوير الخدمة">
-                        <div class="card-body">
-                            <h5 class="card-title">تصميم جرافيكي</h5>
-                            <p class="card-text">وصف الدورة بشكل مختصر</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="item" data-owl="3">
-                    <div class="card py-4 text-center d-flex justify-content-center align-items-center flex-column">
-                        <img src="img/seveices/Mask Group 27.svg" class="card-img-top" alt="تصوير الخدمة">
-                        <div class="card-body">
-                            <h5 class="card-title">تصميم جرافيكي</h5>
-                            <p class="card-text">وصف الدورة بشكل مختصر</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
             </div>
         </div>
     </section>
@@ -679,277 +269,63 @@
             </div>
             <div class="custom-nav-four"></div>
             <div class="owl-carousel owl-four owl-theme">
-                <div class="item" data-owl="4">
-                    <div class="card py-4 text-center d-flex justify-content-center align-items-center flex-column">
-                        <img src="img/offers/Mask Group 28.svg" class="card-img-top" alt="تصوير الخدمة">
-                        <div class="card-body">
-                            <h5 class="card-title">برمجة موبايل</h5>
-                            <p class="card-text">وصف الدورة بشكل مختصر</p>
+                @foreach ($offers as $offer)
+                    <div class="item" data-owl="4">
+                        <div
+                            class="card py-4 text-center d-flex justify-content-center align-items-center flex-column">
+                            <img src="{{ asset('storage/images/category/' . $offer->course->image) }}"
+                                class="card-img-top" alt="تصوير الخدمة">
+                            <div class="card-body">
+                                <h5 class="card-title"> {{ $offer->course->title }} </h5>
+                                <p class="card-text">{{ $offer->course->description }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="item" data-owl="4">
-                    <div class="card py-4 text-center d-flex justify-content-center align-items-center flex-column">
-                        <img src="img/offers/Mask Group 29.svg" class="card-img-top" alt="تصوير الخدمة">
-                        <div class="card-body">
-                            <h5 class="card-title">الذكاء الاصطناعي</h5>
-                            <p class="card-text">وصف الدورة بشكل مختصر</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="item" data-owl="4">
-                    <div class="card py-4 text-center d-flex justify-content-center align-items-center flex-column">
-                        <img src="img/offers/Mask Group 32.svg" class="card-img-top" alt="تصوير الخدمة">
-                        <div class="card-body">
-                            <h5 class="card-title">كيمياء</h5>
-                            <p class="card-text">وصف الدورة بشكل مختصر</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="item" data-owl="4">
-                    <div class="card py-4 text-center d-flex justify-content-center align-items-center flex-column">
-                        <img src="img/offers/Mask Group 33.svg" class="card-img-top" alt="تصوير الخدمة">
-                        <div class="card-body">
-                            <h5 class="card-title">فيزياء</h5>
-                            <p class="card-text">وصف الدورة بشكل مختصر</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="item" data-owl="4">
-                    <div class="card py-4 text-center d-flex justify-content-center align-items-center flex-column">
-                        <img src="img/offers/Mask Group 28.svg" class="card-img-top" alt="تصوير الخدمة">
-                        <div class="card-body">
-                            <h5 class="card-title">برمجة موبايل</h5>
-                            <p class="card-text">وصف الدورة بشكل مختصر</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
     <!-- end special offers -->
 
-    <!-- start optinal course 1 -->
-    <section class="optinal-course py-5 overflow-hidden">
-        <div class="container">
-            <div class="row py-4">
-                <div class="tittle d-flex justify-content-between align-items-center">
-                    <h4 class="m-0">دورة تصميم جرافيكي</h4>
+    @foreach ($categories as $category)
+        <section class="optinal-course py-5 overflow-hidden">
+            <div class="container">
+                <div class="row py-4">
+                    <div class="tittle d-flex justify-content-between align-items-center">
+                        <h4 class="m-0">{{ $category->name }}</h4>
+                    </div>
+                </div>
+                <div class="row row-cols-1 row-cols-md-3 g-3">
+                    @foreach ($category->courses as $course)
+                        @if ($loop->iteration <= 3)
+                            <div class="item" data-owl="5">
+                                <div class="card">
+                                    <img src="{{ asset('storage/images/category/' . $course->image) }}"
+                                        alt="Post Image" class="card-img-top">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><a href=""> {{ $course->title }} </a>
+                                        </h5>
+                                        <p class="card-text">{{ $course->description }}</p>
+                                        <div class="about d-flex justify-content-between align-items-center">
+                                            <div class="comments">
+                                                <img src="{{ asset('front/assets/img/comment/icons-dark-comment-square.svg') }}"
+                                                    alt="">
+                                                آراء المستخدمين
+                                            </div>
+                                            <div class="hours">
+                                                عدد الساعات: {{ $course->hours }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
                 </div>
             </div>
-            <div class="row row-cols-1 row-cols-md-3 g-3">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="img/courses/Rectangle.svg" alt="Post Image" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                            <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة ملخص عنهاشرح عن
-                                الدورة أو
-                                كتابة ملخص عنها</p>
-                            <div class="about d-flex justify-content-between align-items-center">
-                                <div class="comments ">
-                                    <img src="img/comment/icons-dark-comment-square.svg" alt="">
-                                    آراء المستخدمين
-                                </div>
-                                <div class="hours">
-                                    عدد الساعات : 18
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="img/comment/python/Rectangle.svg" alt="Post Image" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                            <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة ملخص عنهاشرح عن
-                                الدورة أو
-                                كتابة ملخص عنها</p>
-                            <div class="about d-flex justify-content-between align-items-center">
-                                <div class="comments ">
-                                    <img src="img/comment/icons-dark-comment-square.svg" alt="">
-                                    آراء المستخدمين
-                                </div>
-                                <div class="hours">
-                                    عدد الساعات : 18
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="img/comment/web/Rectangle.svg" alt="Post Image" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                            <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة ملخص عنهاشرح عن
-                                الدورة أو
-                                كتابة ملخص عنها</p>
-                            <div class="about d-flex justify-content-between align-items-center">
-                                <div class="comments ">
-                                    <img src="img/comment/icons-dark-comment-square.svg" alt="">
-                                    آراء المستخدمين
-                                </div>
-                                <div class="hours">
-                                    عدد الساعات : 18
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- end optinal course 1 -->
+        </section>
+    @endforeach
 
-    <!-- start optinal course 2 -->
-    <section class="optinal-course py-5 overflow-hidden">
-        <div class="container">
-            <div class="row py-4">
-                <div class="tittle d-flex justify-content-between align-items-center">
-                    <h4 class="m-0">دورة تصميم جرافيكي</h4>
-                </div>
-            </div>
-            <div class="row row-cols-1 row-cols-md-3 g-3">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="img/comment/4/image.svg" alt="Post Image" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                            <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة ملخص عنهاشرح عن
-                                الدورة أو
-                                كتابة ملخص عنها</p>
-                            <div class="about d-flex justify-content-between align-items-center">
-                                <div class="comments ">
-                                    <img src="img/comment/icons-dark-comment-square.svg" alt="">
-                                    آراء المستخدمين
-                                </div>
-                                <div class="hours">
-                                    عدد الساعات : 18
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="img/comment/4/Rectangle.svg" alt="Post Image" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                            <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة ملخص عنهاشرح عن
-                                الدورة أو
-                                كتابة ملخص عنها</p>
-                            <div class="about d-flex justify-content-between align-items-center">
-                                <div class="comments ">
-                                    <img src="img/comment/icons-dark-comment-square.svg" alt="">
-                                    آراء المستخدمين
-                                </div>
-                                <div class="hours">
-                                    عدد الساعات : 18
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="img/comment/5/image.svg" alt="Post Image" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                            <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة ملخص عنهاشرح عن
-                                الدورة أو
-                                كتابة ملخص عنها</p>
-                            <div class="about d-flex justify-content-between align-items-center">
-                                <div class="comments ">
-                                    <img src="img/comment/icons-dark-comment-square.svg" alt="">
-                                    آراء المستخدمين
-                                </div>
-                                <div class="hours">
-                                    عدد الساعات : 18
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- end optinal course 2 -->
-
-    <!-- start optinal course 3 -->
-    <section class="optinal-course py-5 overflow-hidden">
-        <div class="container">
-            <div class="row py-4">
-                <div class="tittle d-flex justify-content-between align-items-center">
-                    <h4 class="m-0">دورة تصميم جرافيكي</h4>
-                </div>
-            </div>
-            <div class="row row-cols-1 row-cols-md-3 g-3">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="img/comment/6/image-photo.svg" alt="Post Image" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                            <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة ملخص عنهاشرح عن
-                                الدورة أو
-                                كتابة ملخص عنها</p>
-                            <div class="about d-flex justify-content-between align-items-center">
-                                <div class="comments ">
-                                    <img src="img/comment/icons-dark-comment-square.svg" alt="">
-                                    آراء المستخدمين
-                                </div>
-                                <div class="hours">
-                                    عدد الساعات : 18
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="img/comment/6/image.svg" alt="Post Image" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                            <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة ملخص عنهاشرح عن
-                                الدورة أو
-                                كتابة ملخص عنها</p>
-                            <div class="about d-flex justify-content-between align-items-center">
-                                <div class="comments ">
-                                    <img src="img/comment/icons-dark-comment-square.svg" alt="">
-                                    آراء المستخدمين
-                                </div>
-                                <div class="hours">
-                                    عدد الساعات : 18
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="img/comment/6/Rectangle.svg" alt="Post Image" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                            <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة ملخص عنهاشرح عن
-                                الدورة أو
-                                كتابة ملخص عنها</p>
-                            <div class="about d-flex justify-content-between align-items-center">
-                                <div class="comments ">
-                                    <img src="img/comment/icons-dark-comment-square.svg" alt="">
-                                    آراء المستخدمين
-                                </div>
-                                <div class="hours">
-                                    عدد الساعات : 18
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- end optinal course 3 -->
 
     <!-- browsing -->
     <section class="browsing py-5 overflow-hidden">
@@ -990,460 +366,87 @@
                 <div class="tab-pane fade show active" id="recent" role="tabpanel" aria-labelledby="recent-tab">
                     <section class="optinal-course">
                         <div class="owl-carousel owl-five owl-theme">
-                            <div class="item" data-owl="5">
-                                <div class="card">
-                                    <img src="img/nav-tabs/image.svg" alt="Post Image" class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                                        <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة
-                                            ملخص عنهاشرح عن الدورة
-                                            أو
-                                            كتابة ملخص عنها</p>
-                                        <div class="about d-flex justify-content-between align-items-center">
-                                            <div class="comments ">
-                                                <img src="img/comment/icons-dark-comment-square.svg" alt="">
-                                                آراء المستخدمين
-                                            </div>
-                                            <div class="hours">
-                                                عدد الساعات : 18
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item" data-owl="5">
-                                <div class="card">
-                                    <img src="img/nav-tabs/two/image.svg" alt="Post Image" class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                                        <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة
-                                            ملخص عنهاشرح عن الدورة
-                                            أو
-                                            كتابة ملخص عنها</p>
-                                        <div class="about d-flex justify-content-between align-items-center">
-                                            <div class="comments ">
-                                                <img src="img/comment/icons-dark-comment-square.svg" alt="">
-                                                آراء المستخدمين
-                                            </div>
-                                            <div class="hours">
-                                                عدد الساعات : 18
+                            @foreach ($courses as $course)
+                                <div class="item" data-owl="5">
+                                    <div class="card">
+                                        <img src="{{ asset('storage/images/category/' . $course->image) }}"
+                                            alt="Post Image" class="card-img-top">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><a href=""> {{ $course->title }} </a>
+                                            </h5>
+                                            <p class="card-text">{{ $course->description }}</p>
+                                            <div class="about d-flex justify-content-between align-items-center">
+                                                <div class="comments ">
+                                                    <img src="{{ asset('front/assets/img/comment/icons-dark-comment-square.svg') }}"
+                                                        alt="">
+                                                    آراء المستخدمين
+                                                </div>
+                                                <div class="hours">
+                                                    عدد الساعات :{{ $course->hours }}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="item" data-owl="5">
-                                <div class="card">
-                                    <img src="img/nav-tabs/three/image.svg" alt="Post Image" class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                                        <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة
-                                            ملخص عنهاشرح عن الدورة
-                                            أو
-                                            كتابة ملخص عنها</p>
-                                        <div class="about d-flex justify-content-between align-items-center">
-                                            <div class="comments ">
-                                                <img src="img/comment/icons-dark-comment-square.svg" alt="">
-                                                آراء المستخدمين
-                                            </div>
-                                            <div class="hours">
-                                                عدد الساعات : 18
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item" data-owl="5">
-                                <div class="card">
-                                    <img src="img/comment/6/image-photo.svg" alt="Post Image" class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                                        <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة
-                                            ملخص عنهاشرح عن الدورة
-                                            أو
-                                            كتابة ملخص عنها</p>
-                                        <div class="about d-flex justify-content-between align-items-center">
-                                            <div class="comments ">
-                                                <img src="img/comment/icons-dark-comment-square.svg" alt="">
-                                                آراء المستخدمين
-                                            </div>
-                                            <div class="hours">
-                                                عدد الساعات : 18
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item" data-owl="5">
-                                <div class="card">
-                                    <img src="img/comment/6/image-photo.svg" alt="Post Image" class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                                        <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة
-                                            ملخص عنهاشرح عن الدورة
-                                            أو
-                                            كتابة ملخص عنها</p>
-                                        <div class="about d-flex justify-content-between align-items-center">
-                                            <div class="comments ">
-                                                <img src="img/comment/icons-dark-comment-square.svg" alt="">
-                                                آراء المستخدمين
-                                            </div>
-                                            <div class="hours">
-                                                عدد الساعات : 18
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item" data-owl="5">
-                                <div class="card">
-                                    <img src="img/comment/6/image-photo.svg" alt="Post Image" class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                                        <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة
-                                            ملخص عنهاشرح عن الدورة
-                                            أو
-                                            كتابة ملخص عنها</p>
-                                        <div class="about d-flex justify-content-between align-items-center">
-                                            <div class="comments ">
-                                                <img src="img/comment/icons-dark-comment-square.svg" alt="">
-                                                آراء المستخدمين
-                                            </div>
-                                            <div class="hours">
-                                                عدد الساعات : 18
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item" data-owl="5">
-                                <div class="card">
-                                    <img src="img/comment/6/image-photo.svg" alt="Post Image" class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                                        <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة
-                                            ملخص عنهاشرح عن الدورة
-                                            أو
-                                            كتابة ملخص عنها</p>
-                                        <div class="about d-flex justify-content-between align-items-center">
-                                            <div class="comments ">
-                                                <img src="img/comment/icons-dark-comment-square.svg" alt="">
-                                                آراء المستخدمين
-                                            </div>
-                                            <div class="hours">
-                                                عدد الساعات : 18
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </section>
                 </div>
                 <div class="tab-pane fade" id="most-popular" role="tabpanel" aria-labelledby="most-popular-tab">
                     <section class="optinal-course">
                         <div class="owl-carousel owl-five owl-theme">
-                            <div class="item" data-owl="5">
-                                <div class="card">
-                                    <img src="img/nav-tabs/image.svg" alt="Post Image" class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                                        <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة
-                                            ملخص عنهاشرح عن الدورة
-                                            أو
-                                            كتابة ملخص عنها</p>
-                                        <div class="about d-flex justify-content-between align-items-center">
-                                            <div class="comments ">
-                                                <img src="img/comment/icons-dark-comment-square.svg" alt="">
-                                                آراء المستخدمين
-                                            </div>
-                                            <div class="hours">
-                                                عدد الساعات : 18
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item" data-owl="5">
-                                <div class="card">
-                                    <img src="img/nav-tabs/two/image.svg" alt="Post Image" class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                                        <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة
-                                            ملخص عنهاشرح عن الدورة
-                                            أو
-                                            كتابة ملخص عنها</p>
-                                        <div class="about d-flex justify-content-between align-items-center">
-                                            <div class="comments ">
-                                                <img src="img/comment/icons-dark-comment-square.svg" alt="">
-                                                آراء المستخدمين
-                                            </div>
-                                            <div class="hours">
-                                                عدد الساعات : 18
+                            @foreach ($courses as $course)
+                                <div class="item" data-owl="5">
+                                    <div class="card">
+                                        <img src="{{ asset('storage/images/category/' . $course->image) }}"
+                                            alt="Post Image" class="card-img-top">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><a href=""> {{ $course->title }} </a>
+                                            </h5>
+                                            <p class="card-text">{{ $course->description }}</p>
+                                            <div class="about d-flex justify-content-between align-items-center">
+                                                <div class="comments ">
+                                                    <img src="{{ asset('front/assets/img/comment/icons-dark-comment-square.svg') }}"
+                                                        alt="">
+                                                    آراء المستخدمين
+                                                </div>
+                                                <div class="hours">
+                                                    عدد الساعات :{{ $course->hours }}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="item" data-owl="5">
-                                <div class="card">
-                                    <img src="img/nav-tabs/three/image.svg" alt="Post Image" class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                                        <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة
-                                            ملخص عنهاشرح عن الدورة
-                                            أو
-                                            كتابة ملخص عنها</p>
-                                        <div class="about d-flex justify-content-between align-items-center">
-                                            <div class="comments ">
-                                                <img src="img/comment/icons-dark-comment-square.svg" alt="">
-                                                آراء المستخدمين
-                                            </div>
-                                            <div class="hours">
-                                                عدد الساعات : 18
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item" data-owl="5">
-                                <div class="card">
-                                    <img src="img/comment/6/image-photo.svg" alt="Post Image" class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                                        <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة
-                                            ملخص عنهاشرح عن الدورة
-                                            أو
-                                            كتابة ملخص عنها</p>
-                                        <div class="about d-flex justify-content-between align-items-center">
-                                            <div class="comments ">
-                                                <img src="img/comment/icons-dark-comment-square.svg" alt="">
-                                                آراء المستخدمين
-                                            </div>
-                                            <div class="hours">
-                                                عدد الساعات : 18
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item" data-owl="5">
-                                <div class="card">
-                                    <img src="img/comment/6/image-photo.svg" alt="Post Image" class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                                        <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة
-                                            ملخص عنهاشرح عن الدورة
-                                            أو
-                                            كتابة ملخص عنها</p>
-                                        <div class="about d-flex justify-content-between align-items-center">
-                                            <div class="comments ">
-                                                <img src="img/comment/icons-dark-comment-square.svg" alt="">
-                                                آراء المستخدمين
-                                            </div>
-                                            <div class="hours">
-                                                عدد الساعات : 18
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item" data-owl="5">
-                                <div class="card">
-                                    <img src="img/comment/6/image-photo.svg" alt="Post Image" class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                                        <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة
-                                            ملخص عنهاشرح عن الدورة
-                                            أو
-                                            كتابة ملخص عنها</p>
-                                        <div class="about d-flex justify-content-between align-items-center">
-                                            <div class="comments ">
-                                                <img src="img/comment/icons-dark-comment-square.svg" alt="">
-                                                آراء المستخدمين
-                                            </div>
-                                            <div class="hours">
-                                                عدد الساعات : 18
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item" data-owl="5">
-                                <div class="card">
-                                    <img src="img/comment/6/image-photo.svg" alt="Post Image" class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                                        <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة
-                                            ملخص عنهاشرح عن الدورة
-                                            أو
-                                            كتابة ملخص عنها</p>
-                                        <div class="about d-flex justify-content-between align-items-center">
-                                            <div class="comments ">
-                                                <img src="img/comment/icons-dark-comment-square.svg" alt="">
-                                                آراء المستخدمين
-                                            </div>
-                                            <div class="hours">
-                                                عدد الساعات : 18
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </section>
                 </div>
                 <div class="tab-pane fade" id="lastest-offers" role="tabpanel" aria-labelledby="lastest-offers-tab">
                     <section class="optinal-course">
                         <div class="owl-carousel owl-five owl-theme">
-                            <div class="item" data-owl="5">
-                                <div class="card">
-                                    <img src="img/nav-tabs/image.svg" alt="Post Image" class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                                        <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة
-                                            ملخص عنهاشرح عن الدورة
-                                            أو
-                                            كتابة ملخص عنها</p>
-                                        <div class="about d-flex justify-content-between align-items-center">
-                                            <div class="comments ">
-                                                <img src="img/comment/icons-dark-comment-square.svg" alt="">
-                                                آراء المستخدمين
-                                            </div>
-                                            <div class="hours">
-                                                عدد الساعات : 18
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item" data-owl="5">
-                                <div class="card">
-                                    <img src="img/nav-tabs/two/image.svg" alt="Post Image" class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                                        <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة
-                                            ملخص عنهاشرح عن الدورة
-                                            أو
-                                            كتابة ملخص عنها</p>
-                                        <div class="about d-flex justify-content-between align-items-center">
-                                            <div class="comments ">
-                                                <img src="img/comment/icons-dark-comment-square.svg" alt="">
-                                                آراء المستخدمين
-                                            </div>
-                                            <div class="hours">
-                                                عدد الساعات : 18
+                            @foreach ($courses as $course)
+                                <div class="item" data-owl="5">
+                                    <div class="card">
+                                        <img src="{{ asset('storage/images/category/' . $course->image) }}"
+                                            alt="Post Image" class="card-img-top">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><a href=""> {{ $course->title }} </a>
+                                            </h5>
+                                            <p class="card-text">{{ $course->description }}</p>
+                                            <div class="about d-flex justify-content-between align-items-center">
+                                                <div class="comments ">
+                                                    <img src="{{ asset('front/assets/img/comment/icons-dark-comment-square.svg') }}"
+                                                        alt="">
+                                                    آراء المستخدمين
+                                                </div>
+                                                <div class="hours">
+                                                    عدد الساعات :{{ $course->hours }}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="item" data-owl="5">
-                                <div class="card">
-                                    <img src="img/nav-tabs/three/image.svg" alt="Post Image" class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                                        <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة
-                                            ملخص عنهاشرح عن الدورة
-                                            أو
-                                            كتابة ملخص عنها</p>
-                                        <div class="about d-flex justify-content-between align-items-center">
-                                            <div class="comments ">
-                                                <img src="img/comment/icons-dark-comment-square.svg" alt="">
-                                                آراء المستخدمين
-                                            </div>
-                                            <div class="hours">
-                                                عدد الساعات : 18
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item" data-owl="5">
-                                <div class="card">
-                                    <img src="img/comment/6/image-photo.svg" alt="Post Image" class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                                        <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة
-                                            ملخص عنهاشرح عن الدورة
-                                            أو
-                                            كتابة ملخص عنها</p>
-                                        <div class="about d-flex justify-content-between align-items-center">
-                                            <div class="comments ">
-                                                <img src="img/comment/icons-dark-comment-square.svg" alt="">
-                                                آراء المستخدمين
-                                            </div>
-                                            <div class="hours">
-                                                عدد الساعات : 18
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item" data-owl="5">
-                                <div class="card">
-                                    <img src="img/comment/6/image-photo.svg" alt="Post Image" class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                                        <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة
-                                            ملخص عنهاشرح عن الدورة
-                                            أو
-                                            كتابة ملخص عنها</p>
-                                        <div class="about d-flex justify-content-between align-items-center">
-                                            <div class="comments ">
-                                                <img src="img/comment/icons-dark-comment-square.svg" alt="">
-                                                آراء المستخدمين
-                                            </div>
-                                            <div class="hours">
-                                                عدد الساعات : 18
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item" data-owl="5">
-                                <div class="card">
-                                    <img src="img/comment/6/image-photo.svg" alt="Post Image" class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                                        <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة
-                                            ملخص عنهاشرح عن الدورة
-                                            أو
-                                            كتابة ملخص عنها</p>
-                                        <div class="about d-flex justify-content-between align-items-center">
-                                            <div class="comments ">
-                                                <img src="img/comment/icons-dark-comment-square.svg" alt="">
-                                                آراء المستخدمين
-                                            </div>
-                                            <div class="hours">
-                                                عدد الساعات : 18
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item" data-owl="5">
-                                <div class="card">
-                                    <img src="img/comment/6/image-photo.svg" alt="Post Image"
-                                        class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><a href="">اسم الدورة</a></h5>
-                                        <p class="card-text">شرح عن الدورة أو كتابة ملخص عنهاشرح عن الدورة أو كتابة
-                                            ملخص عنهاشرح عن الدورة
-                                            أو
-                                            كتابة ملخص عنها</p>
-                                        <div class="about d-flex justify-content-between align-items-center">
-                                            <div class="comments ">
-                                                <img src="img/comment/icons-dark-comment-square.svg" alt="">
-                                                آراء المستخدمين
-                                            </div>
-                                            <div class="hours">
-                                                عدد الساعات : 18
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </section>
                 </div>

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\User;
 use App\Traits\UserTypeTrait;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -17,7 +20,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        $admins = Admin::with('user')->get();
+        return view('cms.admins.index', compact('admins'));
     }
 
     /**
@@ -27,7 +31,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('cms.admins.create');
     }
 
     /**
@@ -38,7 +42,14 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            DB::transaction(function () use ($request) {
+                $this->createUser($request, 'admin');
+            });
+            return response()->json(['icon' => 'success', 'title' => 'تمت عملية الحفظ بنجاح'], 200);
+        } catch (Exception $e) {
+            return response()->json(['icon' => 'error', 'title' => $e->getMessage()], 400);
+        }
     }
 
     /**
@@ -60,7 +71,7 @@ class AdminController extends Controller
      */
     public function edit(Admin $admin)
     {
-        //
+        return view('cms.admins.edit', ['admin' => $admin]);
     }
 
     /**
@@ -70,9 +81,16 @@ class AdminController extends Controller
      * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Admin $admin)
+    public function update(Request $request, $id)
     {
-        //
+        try {
+            DB::transaction(function () use ($request, $id) {
+                $this->updateUser($request, 'admin', $id);
+            });
+            return response()->json(['icon' => 'success', 'title' => 'تمت عملية التحديث بنجاح'], 200);
+        } catch (Exception $e) {
+            return response()->json(['icon' => 'error', 'title' => $e->getMessage()], 400);
+        }
     }
 
     /**
@@ -81,8 +99,13 @@ class AdminController extends Controller
      * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Admin $admin)
+    public function destroy($id)
     {
-        //
+        $admin = Admin::findOrFail($id);
+        $user = $admin->user;
+        $user = User::destroy($user->id);
+        $admin = Admin::destroy($id);
+
+        return response()->json(['icon' => 'success', 'title' => 'Deleted is Successfully'], $admin ? 200 : 400);
     }
 }

@@ -28,7 +28,16 @@ a {
 li {
   list-style-type: none;
 }
-
+p{
+    overflow: hidden !important;
+    white-space: nowrap;
+    text-overflow: ellipsis !important;
+}
+p.card-text{
+    height: 50px !important;
+    width: 100% !important;
+    white-space: initial;
+}
 .navbar a {
   font-family: "Cairo", sans-serif;
   color: #141124 !important;

@@ -23,6 +23,11 @@ class Course extends Model
         return $this->hasMany(InteractiveSession::class);
     }
 
+    public function offers()
+    {
+        return $this->hasOne(Offers::class);
+    }
+
     public function user_reviews()
     {
         return $this->hasMany(UserReviews::class);

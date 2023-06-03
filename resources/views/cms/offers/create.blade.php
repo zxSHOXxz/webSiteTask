@@ -64,7 +64,7 @@
                                 <select data-placeholder="الدورات" name="course_id" id="course_id"
                                     class="form-control select-icons">
                                     @foreach ($courses as $course)
-                                        <option value="{{ $course->id }}">{{ $course->name }}</option>
+                                        <option value="{{ $course->id }}">{{ $course->title }}</option>
                                     @endforeach
                                 </select>
                             </div>

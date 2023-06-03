@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Offers;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OffersController extends Controller
 {
@@ -15,7 +17,7 @@ class OffersController extends Controller
      */
     public function index()
     {
-        $offers = Offers::all();
+        $offers = Offers::with('course')->get();
         return view('cms.offers.index', compact('offers'));
     }
 
@@ -38,7 +40,40 @@ class OffersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = validator($request->all(), [
+            'title' => 'required|string|min:3|max:20',
+        ], [
+            'title.required' => 'الإسم مطلوب',
+            'title.min' => 'لا يقبل أقل من 3 حروف',
+            'title.max' => 'لا يقبل أكثر من 20 حروف',
+        ]);
+
+        DB::beginTransaction();
+
+        try {
+            if (!$validator->fails()) {
+                $offer = new Offers();
+                $offer->title = $request->get('title');
+                $offer->value = $request->get('value');
+                $offer->expiration_date = $request->get('expiration_date');
+                $offer->status = $request->get('status');
+                $offer->course_id = $request->get('course_id');
+                $isSaved = $offer->save();
+
+                if ($isSaved) {
+                    DB::commit();
+                    return response()->json(['icon' => 'success', 'title' => "تمت الإضافة بنجاح"], 200);
+                } else {
+                    DB::rollBack();
+                    return response()->json(['icon' => 'error', 'title' => "فشلت عملية التخزين"], 400);
+                }
+            } else {
+                return response()->json(['icon' => 'error', 'title' => $validator->getMessageBag()->first()], 400);
+            }
+        } catch (Exception $e) {
+            DB::rollBack();
+            return response()->json(['icon' => 'error', 'title' => $e->getMessage()], 500);
+        }
     }
 
     /**
@@ -58,9 +93,12 @@ class OffersController extends Controller
      * @param  \App\Models\Offers  $offers
      * @return \Illuminate\Http\Response
      */
-    public function edit(Offers $offers)
+    public function edit($id)
     {
-        //
+        $offers = Offers::findOrFail($id);
+        $courses = Course::all();
+
+        return view('cms.offers.edit', compact('offers', 'courses'));
     }
 
     /**
@@ -70,9 +108,42 @@ class OffersController extends Controller
      * @param  \App\Models\Offers  $offers
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Offers $offers)
+    public function update(Request $request, $id)
     {
-        //
+        $validator = validator($request->all(), [
+            'title' => 'required|string|min:3|max:20',
+        ], [
+            'title.required' => 'الإسم مطلوب',
+            'title.min' => 'لا يقبل أقل من 3 حروف',
+            'title.max' => 'لا يقبل أكثر من 20 حروف',
+        ]);
+
+        DB::beginTransaction();
+
+        try {
+            if (!$validator->fails()) {
+                $offer = Offers::findOrFail($id);
+                $offer->title = $request->get('title');
+                $offer->value = $request->get('value');
+                $offer->expiration_date = $request->get('expiration_date');
+                $offer->status = $request->get('status');
+                $offer->course_id = $request->get('course_id');
+                $isSaved = $offer->save();
+
+                if ($isSaved) {
+                    DB::commit();
+                    return response()->json(['icon' => 'success', 'title' => "تمت الإضافة بنجاح"], 200);
+                } else {
+                    DB::rollBack();
+                    return response()->json(['icon' => 'error', 'title' => "فشلت عملية التخزين"], 400);
+                }
+            } else {
+                return response()->json(['icon' => 'error', 'title' => $validator->getMessageBag()->first()], 400);
+            }
+        } catch (Exception $e) {
+            DB::rollBack();
+            return response()->json(['icon' => 'error', 'title' => $e->getMessage()], 500);
+        }
     }
 
     /**
@@ -81,8 +152,9 @@ class OffersController extends Controller
      * @param  \App\Models\Offers  $offers
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Offers $offers)
+    public function destroy($id)
     {
-        //
+        $category = Offers::destroy($id);
+        return response()->json(['icon' => 'success', 'title' => 'Deleted is Successfully'], $category ? 200 : 400);
     }
 }

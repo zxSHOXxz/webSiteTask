@@ -184,6 +184,6 @@ function showMessage(data) {
         icon: data.icon,
         title: data.title,
         showConfirmButton: false,
-        timer: 1500,
+        timer: 3500,
     });
 }

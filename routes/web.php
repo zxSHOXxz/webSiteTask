@@ -1,12 +1,16 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\FrontController;
 use App\Http\Controllers\InteractiveSessionController;
 use App\Http\Controllers\OffersController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TrainerController;
 use App\Http\Controllers\UserAuthController;
+use App\Http\Controllers\UserReviewsController;
+use App\Models\InteractiveSession;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,9 +29,7 @@ Route::middleware(['redirect.prefix'])->get('/login', function () {
 });
 
 
-Route::get('/', function () {
-    return view('frontend.index');
-});
+Route::get('/', [FrontController::class, 'index']);
 route::get('list', [UserAuthController::class, 'list'])->name('list');
 Route::prefix('cms/')->middleware('guest:admin,trainer,student')->group(function () {
     route::get('{guard}/login', [UserAuthController::class, 'showLogin'])->name('view.login');
@@ -49,6 +51,12 @@ Route::prefix('cms/admin')->middleware(['auth:admin,student,trainer'])->group(fu
     Route::resource('trainers', TrainerController::class);
     Route::post('trainers_update/{id}', [TrainerController::class, 'update'])->name('trainers_update');
 
+    Route::resource('admins', AdminController::class);
+    Route::post('admins_update/{id}', [AdminController::class, 'update'])->name('admins_update');
+
     Route::resource('students', StudentController::class);
     Route::post('students_update/{id}', [StudentController::class, 'update'])->name('students_update');
+
+    Route::resource('usereviews', UserReviewsController::class);
+    Route::post('usereviews_update/{id}', [UserReviewsController::class, 'update'])->name('usereviews_update');
 });
