@@ -7,6 +7,8 @@ use App\Http\Controllers\OffersController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TrainerController;
 use App\Http\Controllers\UserAuthController;
+use App\Http\Livewire\CreateCategory;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,6 +38,9 @@ Route::prefix('cms/admin')->middleware(['auth:admin,student,trainer'])->group(fu
 
     Route::resource('categories', CategoryController::class);
     Route::post('categories_update/{category}', [CategoryController::class, 'update'])->name('categories_update');
+
+    // Route::post('/categories', index::class)->name('categories.index');
+    Route::post('/categories_create', CreateCategory::class)->name('categories.store');
 
     Route::resource('courses', CourseController::class);
     Route::post('courses_update/{id}', [CourseController::class, 'update'])->name('courses_update');

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>لوحة التحكم - @yield('title')</title>
     <!-- Global stylesheets -->
+    @livewireStyles
     <link href="{{ asset('cms/assets/fonts/inter/inter.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('cms/assets/icons/phosphor/styles.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('cms/assets/css/all.min.css') }}" id="stylesheet" rel="stylesheet" type="text/css">
@@ -53,6 +54,7 @@
         }
     </style>
     @yield('styles')
+
 </head>
 
 <body>
@@ -305,7 +307,7 @@
             </div>
         </div>
         <!-- /demo config -->
-
+        @livewireScripts
         <script src="{{ asset('cms/assets/js/jquery/jquery.min.js') }}"></script>
         <!-- Load plugin -->
         <script src="{{ asset('cms/assets/js/vendor/tables/datatables/datatables.min.js') }}"></script>
