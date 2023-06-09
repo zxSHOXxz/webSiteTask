@@ -173,6 +173,122 @@
                             </ul>
                         </li>
                         </li>
+                        <li class="nav-item">
+                        <li class="nav-item nav-item-submenu">
+                            <a href="#" class="nav-link">
+                                <i class="ph-circles-four"></i>
+                                <span>الخصومات</span>
+                            </a>
+                            <ul class="nav-group-sub collapse">
+                                <li class="nav-item">
+                                    <a href="{{ route('offers.index') }}" class="nav-link"> عرض الخصومات </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('offers.create') }}" class="nav-link"> اضافة الخصومات </a>
+                                </li>
+                            </ul>
+                        </li>
+                        </li>
+                        <li class="nav-item">
+                        <li class="nav-item nav-item-submenu">
+                            <a href="#" class="nav-link">
+                                <i class="ph-circles-four"></i>
+                                <span>الدورات</span>
+                            </a>
+                            <ul class="nav-group-sub collapse">
+                                <li class="nav-item">
+                                    <a href="{{ route('courses.index') }}" class="nav-link"> عرض الدورات </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('courses.create') }}" class="nav-link"> اضافة الدورات </a>
+                                </li>
+                            </ul>
+                        </li>
+                        </li>
+                        <li class="nav-item">
+                        <li class="nav-item nav-item-submenu">
+                            <a href="#" class="nav-link">
+                                <i class="ph-circles-four"></i>
+                                <span>المدربين</span>
+                            </a>
+                            <ul class="nav-group-sub collapse">
+                                <li class="nav-item">
+                                    <a href="{{ route('trainers.index') }}" class="nav-link"> عرض المدربين </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('trainers.create') }}" class="nav-link"> اضافة المدربين </a>
+                                </li>
+                            </ul>
+                        </li>
+                        </li>
+                        <li class="nav-item">
+                        <li class="nav-item nav-item-submenu">
+                            <a href="#" class="nav-link">
+                                <i class="ph-circles-four"></i>
+                                <span>الطلاب</span>
+                            </a>
+                            <ul class="nav-group-sub collapse">
+                                <li class="nav-item">
+                                    <a href="{{ route('students.index') }}" class="nav-link"> عرض الطلاب </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('students.create') }}" class="nav-link"> اضافة الطلاب </a>
+                                </li>
+                            </ul>
+                        </li>
+                        </li>
+                        <li class="nav-item">
+                        <li class="nav-item nav-item-submenu">
+                            <a href="#" class="nav-link">
+                                <i class="ph-circles-four"></i>
+                                <span>المشرفين</span>
+                            </a>
+                            <ul class="nav-group-sub collapse">
+                                <li class="nav-item">
+                                    <a href="{{ route('admins.index') }}" class="nav-link"> عرض المشرفين </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('admins.create') }}" class="nav-link"> اضافة المشرفين </a>
+                                </li>
+                            </ul>
+                        </li>
+                        </li>
+                        <li class="nav-item">
+                        <li class="nav-item nav-item-submenu">
+                            <a href="#" class="nav-link">
+                                <i class="ph-circles-four"></i>
+                                <span> الجلسات التفاعلية </span>
+                            </a>
+                            <ul class="nav-group-sub collapse">
+                                <li class="nav-item">
+                                    <a href="{{ route('interactive_session.index') }}" class="nav-link"> عرض الجلسات
+                                        التفاعلية
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('interactive_session.create') }}" class="nav-link"> اضافة
+                                        الجلسات التفاعلية </a>
+                                </li>
+                            </ul>
+                        </li>
+                        </li>
+                        <li class="nav-item">
+                        <li class="nav-item nav-item-submenu">
+                            <a href="#" class="nav-link">
+                                <i class="ph-circles-four"></i>
+                                <span>اّراء المستخدمين</span>
+                            </a>
+                            <ul class="nav-group-sub collapse">
+                                <li class="nav-item">
+                                    <a href="{{ route('admins.index') }}" class="nav-link"> عرض اّراء المستخدمين </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('admins.create') }}" class="nav-link"> اضافة اّراء المستخدمين
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        </li>
 
                     </ul>
                     </li>

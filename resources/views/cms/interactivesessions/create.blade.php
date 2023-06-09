@@ -1,8 +1,8 @@
 @extends('cms.master')
-@section('title', 'التصنيفات')
+@section('title', 'الجلسة التفاعلية')
 
-@section('tittle_1', ' اضافة التصنيف ')
-@section('tittle_2', ' اضافة التصنيف ')
+@section('tittle_1', ' اضافة جلسة تفاعلية ')
+@section('tittle_2', ' اضافة جلسة تفاعلية ')
 
 
 @section('styles')
@@ -21,37 +21,67 @@
     <!-- Basic datatable -->
     <div class="card">
         <div class="card-header">
-            <h5 class="mb-0">اضافة تصنيف</h5>
+            <h5 class="mb-0">اضافة جلسة تفاعلية </h5>
         </div>
 
         <div class="card-body">
             <!-- Right aligned buttons -->
             <div class="card">
                 <div class="card-header">
-                    <h6 class="mb-0"> اضافة تصنيف </h6>
+                    <h6 class="mb-0"> اضافة جلسة تفعالية </h6>
                 </div>
                 <div class="card-body">
                     <form action="#">
                         <div class="mb-3">
-                            <label class="form-label">اسم التصنيف</label>
-                            <input type="text" name="name" id="name" class="form-control"
-                                placeholder="اسم التصنيف">
+                            <label class="form-label"> عنوان الحلسة التفاعلية </label>
+                            <input type="text" name="tittle" id="tittle" class="form-control"
+                                placeholder="عنوان الحلسة التفاعلية ">
                         </div>
                         <div class="mb-3">
-                            <div class="form-group">
-                                <label for="parent_id">الفئة الأب:</label>
-                                <select name="parent_id" id="parent_id" class="form-control">
-                                    <option value="">بدون فئة أب</option>
-                                    @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            <label class="form-label">وصف الجلسة التفاعلية</label>
+                            <input type="text" name="description" id="description" class="form-control"
+                                placeholder=" وصف الجلسة التفاعلية ">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label"> اهداف الجلسة التفاعلية </label>
+                            <input type="text" name="goals" id="goals" class="form-control"
+                                placeholder=" اهداف الجلسة التفاعلية ">
+                        </div>
+                        <div>
+                            <div class="row mb-3">
+                                <label class="col-form-label col-lg-3"> المدربين </label>
+                                <div class="col-lg-9">
+                                    <select class="form-control multiselect" name="trainer[]" id="trainer[]"
+                                        multiple="multiple">
+                                        @foreach ($trainers as $trainer)
+                                            <option value="{{ $trainer->id }}">{{ $trainer->user->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <label class="col-form-label col-lg-3">الدورة</label>
+                            <div class="col-lg-9">
+                                <select data-placeholder="الدورة" name="course_id" id="course_id"
+                                    class="form-control select-icons">
+                                    @foreach ($courses as $course)
+                                        <option value="{{ $course->id }}">{{ $course->title }}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
 
-
+                        <div class="row mb-3">
+                            <label class="col-lg-3 col-form-label"> الصورة</label>
+                            <div class="col-lg-9">
+                                <input type="file" class="form-control" name="image" id="image">
+                                <div class="form-text text-muted">Accepted formats: gif, png, jpg. Max file size 2Mb</div>
+                            </div>
+                        </div>
                         <div class="d-flex justify-content-end align-items-center">
-                            <a href="{{ route('categoaries.index') }}" class="btn btn-light">الغاء</a>
+                            <a href="{{ route('interactive_session.index') }}" class="btn btn-light">الغاء</a>
                             <button type="button" onclick="performStore()" class="btn btn-primary ms-3"> اضافة <i
                                     class="ph-paper-plane-tilt ms-2"></i></button>
                         </div>
@@ -74,47 +104,20 @@
 @section('scripts')
     <script src="{{ asset('cms/assets/js/vendor/forms/selects/select2.min.js') }}"></script>
     <script src="{{ asset('cms/assets/demo/pages/form_select2.js') }}"></script>
+    <script src="{{ asset('cms/assets/js/vendor/forms/selects/bootstrap_multiselect.js') }}"></script>
+    <script src="{{ asset('cms/assets/demo/pages/form_multiselect.js') }}"></script>
     <script>
         function performStore() {
             let formData = new FormData();
-            formData.append('name', document.getElementById('name').value);
-            formData.append('parent_id', document.getElementById('parent_id').value);
-            storeAndUpdateSelect('/cms/admin/categoaries', formData)
-            function storeAndUpdateSelect(url, data) {
-                axios.post(url, data)
-                    .then(function(response) {
-                        showMessage(response.data);
-                        clearForm();
-                        clearAndHideErrors();
-                        updateSelect(data);
-                    })
-                    .catch(function(error) {
+            formData.append('tittle', document.getElementById('tittle').value);
+            formData.append('description', document.getElementById('description').value);
+            formData.append('goals', document.getElementById('goals').value);
+            formData.append('course_id', document.getElementById('course_id').value);
+            formData.append('image', document.getElementById('image').files[0]);
 
-                        if (error.response.data.errors !== undefined) {
-                            showErrorMessages(error.response.data.errors);
-                        } else {
-
-                            showMessage(error.response.data);
-                        }
-                    });
-
-            }
-        }
-        function updateSelect(data) {
-            let selectElement = document.getElementById('parent_id');
-            selectElement.innerHTML = '';
-
-            let optionElement = document.createElement('option');
-            optionElement.value = '';
-            optionElement.textContent = 'بدون فئة أب';
-            selectElement.appendChild(optionElement);
-
-            data.forEach(function(category) {
-                let optionElement = document.createElement('option');
-                optionElement.value = category.id;
-                optionElement.textContent = category.name;
-                selectElement.appendChild(optionElement);
-            });
+            var selectedValues = $('#trainer\\[\\]').val();
+            formData.append('trainer', selectedValues);
+            store('/cms/admin/interactive_session', formData)
         }
     </script>
 @endsection

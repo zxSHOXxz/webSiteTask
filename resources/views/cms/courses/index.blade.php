@@ -43,7 +43,7 @@
                 @foreach ($courses as $course)
                     <tr>
                         <td>{{ $course->id }}</td>
-                        <td><img class="rounded-circle w-80px" src="{{ asset('storage/images/category/' . $course->image) }}">
+                        <td><img class="rounded-circle w-48px h-48px" src="{{ asset('storage/images/category/' . $course->image) }}">
                         </td>
                         <td>{{ $course->title }}</td>
                         <td>{{ $course->about }}</td>
